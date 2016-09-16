@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<title>ADD PRODUCT</title>
+<script>
+function validateProductDetails()
+{
+
+	 var modelname=document.add.productname.value;
+	 var modeltype=document.add.productdesc.value;
+	 var modelprice=document.add.productprice.value;
+	 var modelquantity=document.add.productquan.value;
+	 var modelthres=document.add.productthres.value;
+	 var msg;
+	 if(modelname=="")
+		{
+	        msg = "Product model name field cannot be left empty.";
+	        alert(msg);
+	       return false;
+	   	}
+	  if(modeltype=='---------')
+	  {
+		  msg = "Product model type has to be selected";
+	        alert(msg);
+	       return false;
+
+		  }
+
+	 if(modelprice=="")
+		{
+	        msg = "Product model price field cannot be left empty.";
+	        alert(msg);
+	        return false;
+	   	}
+	 if(modelthres=="")
+		{
+	        msg = "Product model threshold field cannot be left empty.";
+	        alert(msg);
+	        return false;
+	   	}
+	 if(modelquantity=="")
+		{
+	        msg = "Product model quantity field cannot be left empty.";
+	        alert(msg);
+	        return false;
+	   	}
+	   	return true;
+}
+
+function validateprice()
+{
+
+	var numbers = /^[0-9]+$/;
+	if (!document.add.productprice.value.match(numbers)) {
+
+		alert("Product price must be in numbers")
+		document.add.productprice.value="";
+		return false;
+
+	}
+	return true;
+}
+function validatethres()
+{
+
+	var numbers = /^[0-9]+$/;
+	if (!document.add.productthres.value.match(numbers)) {
+
+		alert("Product threshold must be in numbers")
+		document.add.productthres.value="";
+		return false;
+
+	}
+	return true;
+}
+function validatequan()
+{
+
+	var numbers = /^[0-9]+$/;
+	if (!document.add.productquan.value.match(numbers)) {
+
+		alert("Product quantity must be in numbers");
+		document.add.productquan.value="";
+		return false;
+
+	}
+return true;
+}
+</script>
+</head>
+<body>
+<h1 align="center">ADD STOCK</h1>
+<form name="add" action="<%=request.getContextPath()%>/AddProducts" method="POST" onsubmit="return validateProductDetails();">
+<fieldset><legend>Enter product details</legend><table>
+<tr><td>MODEL NAME*</td><td>:</td><td><input type = "text" name="productname"  size=25 /></td></tr>
+<tr><td>MODEL TYPE*</td><td>:</td><td><select name="productdesc" onblur="validatedesc()">
+<option value='---------'>---------------------------</option>
+<option>Mobile</option>
+<option>Accessories</option>
+<option>Headset</option>
+<option>SIM</option>
+<option>Pouch</option></select></td></tr>
+<tr><td>MODEL FEATURES</td><td>:</td><td><textarea name="productfeatures" rows="3" cols="20"></textarea></td></tr>
+<tr><td>MODEL PRICE*</td><td>:</td><td><input type = "text" name="productprice" size=25  onblur="validateprice()" /></td></tr>
+<tr><td>MODEL THRESHOLD*</td><td>:</td><td><input type = "text" name="productthres"  size=25 onblur="validatethres()"/></td></tr>
+<tr><td>MODEL QUANTITY*</td><td>:</td><td><input type = "text" name="productquan"  size=25 onblur="validatequan()" /></td></tr>
+<caption>* fields are mandatory</caption>
+</table></fieldset>
+<p align="center">
+<input  type="submit" name="addproduct" value="ADD STOCK" >
+<a href="HomePage.html"><button type="button">Return to HomePage </button></a>
+</p>
+</form>
+</body>
+</html>
